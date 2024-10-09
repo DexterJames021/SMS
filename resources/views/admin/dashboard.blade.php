@@ -43,11 +43,11 @@
     <ul class="mt-8">
       <li>
           <x-nav-link :href="route('student.index')" :active="request()->routeIs('student.index')">
-            Course
+            Dashboard
           </x-nav-link>
       </li>
       <li>
-          <x-nav-link :href="route('student.index')" :active="request()->routeIs('student.index')">
+          <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
             Dashboard
           </x-nav-link>
       </li>

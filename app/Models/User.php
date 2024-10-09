@@ -21,6 +21,10 @@ class User extends Authenticatable
         'email',
         'password',
     ];
+    // one to one rel to student info
+    public function student(){
+        return $this->hasOne(Student::class, 'user_id', 'id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -44,4 +48,6 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+
 }
