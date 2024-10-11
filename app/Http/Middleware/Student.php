@@ -16,7 +16,7 @@ class Student
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(auth::user()->usertype != 'student'){
+        if(Auth::check() && Auth::user()->usertype != 'student'){
             abort('403', 'Forbidden');
         }
         return $next($request);

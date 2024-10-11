@@ -1,18 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\studentPortal;
 
-use App\Models\Student;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class StudentController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('student/index');
+        //
     }
 
     /**
@@ -20,7 +20,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('student/create');
+        //
     }
 
     /**
@@ -28,8 +28,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        Student::create($request->all());
-        return redirect()->route('student.index');
+        //
     }
 
     /**

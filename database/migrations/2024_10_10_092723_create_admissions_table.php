@@ -11,17 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('admissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->nullable()->constrained();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('country');
-            $table->string('streetaddress');
+            $table->text('streetaddress')->nullable();
             $table->string('city');
             $table->string('region');
             $table->string('postalcode');
+            $table->enum('status', ['pending', 'appro   ved', 'rejected'])->default('pending');
+            $table->timestamp('admission_date')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('admissions');
     }
 };
