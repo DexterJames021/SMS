@@ -34,10 +34,10 @@
         </button>
       </div>
       <div class="hidden lg:flex lg:gap-x-12">
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Product</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Features</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Marketplace</a>
-        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Company</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Courses</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Blogs</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">E-lib</a>
+        <a href="#" class="text-sm font-semibold leading-6 text-gray-900">sms</a>
       </div>
       <div class="hidden lg:flex lg:flex-1 lg:justify-end">
         <a href="{{ route('login') }}" class="text-sm font-semibold leading-6 text-gray-900">SMS <span aria-hidden="true">&rarr;</span></a>
@@ -92,7 +92,7 @@
         <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
         <div class="mt-10 flex items-center justify-center gap-x-6">
           <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
-          <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+          <a href="{{ route('admission')}}" class="text-sm font-semibold leading-6 text-gray-900">Enroll now <span aria-hidden="true">→</span></a>
         </div>
       </div>
     </div>

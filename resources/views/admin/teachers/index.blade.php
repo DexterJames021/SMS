@@ -12,32 +12,32 @@
         <h2 class="font-semibold text-xl my-3 text-gray-800 leading-tight">
             {{ __('Admin Dashboard') }}
         </h2>
-        <a href="{{ route('students.create')}}" class="">
+        <a href="{{ route('teachers.create')}}" class="">
             <button class=" bg-blue-500 items-end hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-gray-700">Add</button>
         </a>
     </div>
     <div>
-        <ul role="list" class="divide-y divide-gray-100">
-        @if($students->isEmpty())
+    <ul role="list" class="divide-y divide-gray-100">
+        @if($teachers->isEmpty())
         <li class="flex justify-between gap-x-6 py-5">No Data Found</li>
         @else
-            @foreach ($students as $student)
+            @foreach ($teachers as $teacher)
             <li class="flex justify-between gap-x-6 py-5">
                 <div class="flex min-w-0 gap-x-4">
                     <img class="h-12 w-12 flex-none rounded-full bg-gray-50" src="{{asset('assets/img/default.png')}}" alt="">
                     <div class="min-w-0 flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">
-                            <a href="{{ route('students.show',  $student->id )}}">
-                                {{ $student->lastname}} {{ $student->firstname}}
+                            <a href="{{ route('teachers.show',  $teacher->id )}}">
+                                {{ $teacher->lastname}} {{ $teacher->firstname}}
 
                             </a>
                         </p>
-                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ $student->email}}</p>
+                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ $teacher->email}}</p>
                     </div>
                 </div>
                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                     <p class="text-sm leading-6 text-gray-900">course</p>
-                    <p class="mt-1 text-xs leading-5 text-gray-500">{{ $student->country}}<time datetime="2023-01-23T13:23Z"> {{ $student->city}}</time></p>
+                    <p class="mt-1 text-xs leading-5 text-gray-500">{{ $teacher->country}}<time datetime="2023-01-23T13:23Z"> {{ $teacher->city}}</time></p>
                 </div>
             </li>
             @endforeach
@@ -118,7 +118,6 @@
                 </div>
             </li> -->
         </ul>
-
     </div>
 </section>
 @endsection

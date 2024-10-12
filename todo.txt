@@ -1,0 +1,57 @@
+//TODO 
+
+ mobile responsive sidebar
+ teacher management with many to many
+ data privacy admission
+
+db: mssql ? optional sql server gagamitin server
+lms: moodle study how to integrate and get api
+sms: deloyment 
+
+SCHOOL: 
+add form student: course 
+add form admission: course 
+
+add form teacher: course 
+
+-----------------------------------------------------
+Basic Information:
+
+    First Name: first_name
+    Last Name: last_name
+    Gender: gender
+    Date of Birth: date_of_birth
+    Email Address: email
+    Phone Number: phone
+    Address: address
+    Nationality: nationality
+
+Academic Information:
+
+    Employee ID: employee_id
+    Hire Date: hire_date
+    Subject(s) Taught: subjects (can be a foreign key or a many-to-many relationship if teachers can teach multiple subjects)
+    Department: department (can be a foreign key)
+    Qualification: qualification
+    Years of Experience: years_of_experience
+
+Employment Details:
+
+    Employment Status: employment_status (e.g., Full-time, Part-time, Contract)
+    Salary: salary
+    Job Title/Position: position
+    Date of Joining: date_of_joining
+    Working Hours: working_hours
+
+Contact Information:
+
+    Emergency Contact Name: emergency_contact_name
+    Emergency Contact Phone: emergency_contact_phone
+    Emergency Contact Relation: emergency_contact_relation
+
+Additional Information:
+
+    Teacher's Photo: photo (can be a file upload)
+    Resume/CV: resume (optional, file upload)
+    Biography: biography (optional)
+    Special Skills or Certifications: special_skills

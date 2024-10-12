@@ -1,17 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
-use App\Models\Admission;
+use App\Models\Teacher;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class AdmissionController extends Controller
+class TeacherController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $data = Teacher::all();
+        return view('admin.teachers.index')->with('teachers', $data);
     }
 
     /**
@@ -19,7 +22,7 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('admission.create');
+        return view('admin.teachers.create');
     }
 
     /**
@@ -27,13 +30,14 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Teacher::create($request->all());
+        return redirect()->route('admin.teachers.index')->with('success', 'Create successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Admission $admission)
+    public function show(string $id)
     {
         //
     }
@@ -41,7 +45,7 @@ class AdmissionController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Admission $admission)
+    public function edit(string $id)
     {
         //
     }
@@ -49,7 +53,7 @@ class AdmissionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Admission $admission)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -57,7 +61,7 @@ class AdmissionController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Admission $admission)
+    public function destroy(string $id)
     {
         //
     }

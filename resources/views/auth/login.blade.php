@@ -24,16 +24,17 @@
         }
     </style>
     @auth
-        {{-- If the user is already logged in --}}
-        <div class="alert alert-info">
-            <h1>You are already logged in!</h1>
-            <p>Do you want to log out?</p>
-            <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-danger">Logout</button>
-            </form>
-        </div>
+    {{-- If the user is already logged in --}}
+    <div class="alert alert-info">
+        <h1>You are already logged in!</h1>
+        <p>Do you want to log out?</p>
+        <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+    </div>
     @else
+   //TODO change the images 
     <div class="h-screen flex">
         <div class="hidden lg:flex w-full lg:w-1/2 login_img_section
           justify-around items-center">
@@ -60,7 +61,7 @@
                 <form method="POST" action="{{ route('login') }}" class="bg-white rounded-md shadow-2xl p-5">
                     @csrf
                     <!-- <form class="bg-white rounded-md shadow-2xl p-5"> -->
-                    <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
+                    <h1 class="text-gray-800 font-bold text-2xl mb-1">LOGIN </h1>
                     <p class="text-sm font-normal text-gray-600 mb-8">Welcome Back</p>
                     <!-- Email Address -->
                     <div>
@@ -80,10 +81,9 @@
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
-                    <x-primary-button class="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2">
+                    <x-primary-button class="block bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2">
                         {{ __('Log in') }}
                     </x-primary-button>
-                    <!-- <button type="submit" class="block w-full bg-indigo-600 mt-5 py-2 rounded-2xl hover:bg-indigo-700 hover:-translate-y-1 transition-all duration-500 text-white font-semibold mb-2">Login</button> -->
                     <div class="flex items-center justify-end mt-4">
                         @if (Route::has('password.request'))
                         <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
@@ -91,9 +91,7 @@
                         </a>
                         @endif
 
-                        <x-primary-button class="ms-3">
-                            {{ __('Log in') }}
-                        </x-primary-button>
+
                     </div>
 
                 </form>

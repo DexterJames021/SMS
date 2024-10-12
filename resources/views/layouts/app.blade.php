@@ -19,17 +19,17 @@
             @include('layouts.navigation')
 
             <!-- Page Heading -->
-            <!-- @i sset($header)
+            @isset($header)
                 <header class="bg-white shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        { $header }}as
+                        {{ $header }}
                     </div>
                 </header>
-            @e ndisset -->
+            @endisset
 
             <!-- Page Content -->
             <main>
-                {{ $slot }}
+                {{ $slot }} 
             </main>
         </div>
     </body>
