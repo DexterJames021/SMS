@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Student;
+$token = 'bb29f3e6dfbb925813aadb5dffaa9da5'; // Replace with your actual token
+use App\Models\Admission;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client; // For making HTTP requests to the LMS API
 use Illuminate\Support\Facades\Http; // Import the Http facade
@@ -29,32 +30,36 @@ class AdmissionController extends Controller
     public function store(Request $request)
     {
         // Validate the admission form data
-        $validatedData = $request->validate([
-            'firstname' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
-            'email' => 'required|email|unique:students,email',
-        ]);
+        // $validatedData = $request->validate([
+        //     'firstname' => 'required|string|max:255',
+        //     'lastname' => 'required|string|max:255',
+        //     'email' => 'required|email|unique:students,email',
+        // ]);
 
         // Create the student record
-        $student = Student::create($validatedData);
+        $student = Admission::create($request->all());
+        // $student = Admission::create($request->all());
 
         // Generate Moodle account details
         $username = $student->firstname . $student->id;
-        $password = strtoupper(substr($student->firstname, 0, 1)) . strtoupper(substr($student->lastname, 0, 1)) . 'SN' . $student->id;
+        // $password = strtoupper(substr($student->firstname, 0, 1)) . strtoupper(substr($student->lastname, 0, 1)) . 'SN' . $student->id;
 
         // Prepare the data in URL-encoded format
         $moodleData = [
             'users[0][username]' => $username,
-            'users[0][password]' => $password,
+            'users[0][password]' => "@Test123",
             'users[0][firstname]' => $student->firstname,
             'users[0][lastname]' => $student->lastname,
             'users[0][email]' => $student->email,
-            'users[0][auth]' => 'manual', // Setting authentication method to 'manual'
+            //'users[0][auth]' => 'manual', // Setting authentication method to 'manual'
         ];
 
         // Set the Moodle API URL
-        $token = 'bb29f3e6dfbb925813aadb5dffaa9da5'; // Replace with your actual token
-        $serverUrl = 'http://localhost/moodle_sms/moodle/webservice/rest/server.php';
+        // $token = 'bb29f3e6dfbb925813aadb5dffaa9da5'; // own pc Replace with your actual token
+        //$token = 'd417306f6be52a3ae4b01be54e3b291f'; // asly pc Replace with your actual token
+        $token = env('MOODLE_API_TOKEN');
+        // $serverUrl = 'http://localhost/moodle_sms/moodle/webservice/rest/server.php';
+        $serverUrl = env('MOODLE_API_URL');
         $functionName = 'core_user_create_users';
         $moodleUrl = "{$serverUrl}?wstoken={$token}&wsfunction={$functionName}&moodlewsrestformat=json";
 

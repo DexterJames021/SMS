@@ -15,10 +15,14 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <!-- jquery -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <!-- parsley -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js" integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"
+        integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <style>
         ._group {
@@ -29,10 +33,11 @@
             display: inline;
         }
 
-        .parsley-required, .parsley-type {
-            color: red; 
+        .parsley-required,
+        .parsley-type {
+            color: red;
             font-size: small;
-            
+
         }
     </style>
 </head>
@@ -40,9 +45,10 @@
 <body>
     <!-- TODO fix ui -->
     <!-- component -->
-     @if (session('success'))
+    @if (session('success'))
         <h1 class=" bg-green-900 text-white">Success</h1>
-     @endif
+    @endif
+
     <div class="bg-gray-100  transition-colors duration-300">
         <div class="container mx-auto p-4">
             <div class="bg-white  shadow rounded-lg p-6 lg:mx-52">
@@ -51,8 +57,8 @@
                     <span class="step-1 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 1</span>
                     <span class="step-2 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 2</span>
                     <span class="step-3 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span>
-                    <span class="step-4 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span>
-                    <span class="step-5 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span>
+                    {{-- <span class="step-4 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span> --}}
+                    {{-- <span class="step-5 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span> --}}
                 </div>
                 <div class="_group">
                     <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Requirements</h1>
@@ -61,7 +67,7 @@
                     <p class="text-gray-600  mb-6">brgy something</p>
                     <p class="text-gray-600  mb-6">etc</p>
                 </div>
-                <form class="admission-form" method="POST" action="{{ route('admission.store')}}">
+                <form class="admission-form" method="POST" action="{{ route('admission.store') }}">
                     @csrf
                     @method('POST')
 
@@ -69,15 +75,20 @@
                         <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Personal Information</h1>
 
                         <label for="">First name:</label>
-                        <input required type="text" name="firstname" placeholder="First name" class="border p-2 mt-1 rounded w-full">
+                        <input required type="text" name="firstname" placeholder="First name"
+                            class="border p-2 mt-1 rounded w-full">
 
                         <label for="">Last name:</label>
-                        <input required type="text" name="lastname" placeholder="Last name" class="border p-2 mt-1 rounded w-full">
+                        <input required type="text" name="lastname" placeholder="Last name"
+                            class="border p-2 mt-1 rounded w-full">
 
                         <label for="">Middle name</label>
-                        <input required type="text" name="middlename" placeholder="Last name" class="border p-2 mt-1 rounded w-full">
+                        <input required type="text" name="middlename" placeholder="Middle name"
+                            class="border p-2 mt-1 rounded w-full">
+
                         <label for="">course</label>
-                        <input required type="text" name="course" placeholder="Last name" class="border p-2 mt-1 rounded w-full">
+                        <input required type="text" name="course" placeholder="Last name"
+                            class="border p-2 mt-1 rounded w-full">
 
                         <!-- <select class="border p-2 my-4 rounded w-full" name="course">
                             <option selected disabled>-- Course --</option>
@@ -85,60 +96,64 @@
                         </select> -->
 
                         <label for="">Email:</label>
-                        <input required type="email" name="email" placeholder="Email address" class="border p-2 mt-1 rounded w-full">
-                        
-                        <label for="">Contact Number:</label>
-                        <input required type="text" name="contactnumber" placeholder="Email address" class="border p-2 mt-1 rounded w-full">
+                        <input required type="email" name="email" placeholder="Email address"
+                            class="border p-2 mt-1 rounded w-full">
 
-                        
+                        <label for="">Contact Number:</label>
+                        <input required type="text" name="contactnumber" placeholder="Email address"
+                            class="border p-2 mt-1 rounded w-full">
+
+                        <label for="">Country:</label>
+                        <input required type="text" name="country" placeholder="country"
+                            class="border p-2 mt-1 rounded w-full">
+
+                        <label for="">Street Address:</label>
+                        <input required type="text" name="streetaddress" placeholder="Street address"
+                            class="border p-2 mt-1 rounded w-full">
+
                         <!-- </div>
                     <div class="_group mb-4"> -->
-                        <label for="">Street Address:</label>
-                        <input required type="text" name="streetaddress" placeholder="Street address" class="border p-2 mt-1 rounded w-full">
+
                         <!-- </div>
                     <div class="_group grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"> -->
                         <label for="">City:</label>
-                        <input required type="text" name="city" placeholder="City" class="border p-2 mt-1 rounded w-full">
-                        <!-- <input required type="text" name="" placeholder="State / Province" class="border p-2 mt-1 rounded w-full"> -->
-                        <!-- <input required type="text" placeholder="ZIP / Postal code" class="border p-2 mt-1 rounded w-full"> -->
+                        <input required type="text" name="city" placeholder="City"
+                            class="border p-2 mt-1 rounded w-full">
                     </div>
                     <!-- parent -->
                     <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Parent Information</h1>
+                        <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Parent Information</h1>
 
                         <div>
                             <label for="father_name">Father's Name</label>
-                            <input type="text" name="fathername" class="border p-2 mt-1 rounded w-full" name="father_name" id="father_name" required>
+                            <input type="text" name="fathername" class="border p-2 mt-1 rounded w-full"
+                                name="father_name" id="father_name" required>
                         </div>
 
                         <div>
                             <label for="mother_name">Mother's Name</label>
-                            <input type="text" name="mothername" class="border p-2 mt-1 rounded w-full" name="mother_name" id="mother_name" required>
+                            <input type="text" name="mothername" class="border p-2 mt-1 rounded w-full"
+                                name="mother_name" id="mother_name" required>
                         </div>
 
                         <div>
                             <label for="parent_contact">Parent/Guardian Contact Number</label>
-                            <input type="text" name="guardiancontactnumber" class="border p-2 mt-1 rounded w-full" name="parent_contact" id="parent_contact" required>
+                            <input type="text" name="guardiancontactnumber" class="border p-2 mt-1 rounded w-full"
+                                name="parent_contact" id="parent_contact" required>
                         </div>
                     </div>
                     <!-- btn -->
                     <div class="mt-5">
-                        <button
-                            type="button"
-                            id="prev-btn"
+                        <button type="button" id="prev-btn"
                             class="prev-btn px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 focus:outline-none transition-colors">
 
                             Prev
                         </button>
-                        <button
-                            type="submit"
-                            id="theme-toggle"
+                        <button type="submit" id="theme-toggle"
                             class=" px-4 py-2 rounded bg-green-500 text-white hover:bg-green-600 focus:outline-none transition-colors">
                             Submit
                         </button>
-                        <button
-                            type="button"
-                            id="next-btn"
+                        <button type="button" id="next-btn"
                             class="next-btn px-4 py-2 rounded bg-blue-500 text-white hover:bg-blue-600 focus:outline-none transition-colors">
 
                             Next

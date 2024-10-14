@@ -30,6 +30,9 @@ return new class extends Migration
             $table->timestamps();
         });
     }
+
+    // id	firstname	lastname	middlename	course	email	contactnumber	country	streetaddress	city	fathername	mothername	guardiancontactnumber	status	admission_date	created_at	updated_at
+    // Query results operations
     // users[0][createpassword]= int
     // users[0][username]= string
     // users[0][auth]= string
