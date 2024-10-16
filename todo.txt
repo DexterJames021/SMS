@@ -1,9 +1,10 @@
 //TODO 
-
+install todo tree extension
  mobile responsive sidebar
  teacher management with many to many
  data privacy admission
 
+404 page 
 db: mssql ? optional sql server gagamitin server
 lms: moodle study how to integrate and get api
 sms: deloyment 

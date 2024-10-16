@@ -16,12 +16,18 @@ return new class extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('email');
+            $table->string('middlename')->nullable();
+            $table->string('course')->nullable();
+            $table->string('email')->unique();
+            $table->string('contactnumber')->unique();
             $table->string('country');
-            $table->string('streetaddress');
+            $table->text('streetaddress')->nullable();
             $table->string('city');
-            $table->string('region');
-            $table->string('postalcode');
+            $table->string('fathername')->nullable();
+            $table->string('mothername')->nullable();
+            $table->string('guardiancontactnumber');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
+            $table->timestamp('admission_date')->nullable();
             $table->timestamps();
         });
     }

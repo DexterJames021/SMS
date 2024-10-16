@@ -29,8 +29,10 @@
             display: inline;
         }
 
-        .parsley-required {
-            color: red;
+        .parsley-required, .parsley-type {
+            color: red; 
+            font-size: small;
+            
         }
     </style>
 </head>
@@ -38,9 +40,12 @@
 <body>
     <!-- TODO fix ui -->
     <!-- component -->
+     @if (session('success'))
+        <h1 class=" bg-green-900 text-white">Success</h1>
+     @endif
     <div class="bg-gray-100  transition-colors duration-300">
         <div class="container mx-auto p-4">
-            <div class="bg-white  shadow rounded-lg p-6">
+            <div class="bg-white  shadow rounded-lg p-6 lg:mx-52">
 
                 <div class="flex justify-center">
                     <span class="step-1 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 1</span>
@@ -50,37 +55,52 @@
                     <span class="step-5 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span>
                 </div>
                 <div class="_group">
-                    <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Requirement</h1>
+                    <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Requirements</h1>
                     <p class="text-gray-600  mb-6">requirement</p>
                     <p class="text-gray-600  mb-6">psa</p>
                     <p class="text-gray-600  mb-6">brgy something</p>
                     <p class="text-gray-600  mb-6">etc</p>
                 </div>
-                <form class="admission-form">
+                <form class="admission-form" method="POST" action="{{ route('admission.store')}}">
+                    @csrf
+                    @method('POST')
+
                     <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Personal Information</h1>
 
-                        <label for="">First name</label>
-                        <input required type="text" placeholder="First name" class="border p-2 mt-1 rounded w-full">
+                        <label for="">First name:</label>
+                        <input required type="text" name="firstname" placeholder="First name" class="border p-2 mt-1 rounded w-full">
 
-                        <label for="">Last name</label>
-                        <input required type="text" placeholder="Last name" class="border p-2 mt-1 rounded w-full">
+                        <label for="">Last name:</label>
+                        <input required type="text" name="lastname" placeholder="Last name" class="border p-2 mt-1 rounded w-full">
 
-                        <label for="">Email</label>
-                        <input required type="email" placeholder="Email address" class="border p-2 mt-1 rounded w-full">
+                        <label for="">Middle name</label>
+                        <input required type="text" name="middlename" placeholder="Last name" class="border p-2 mt-1 rounded w-full">
+                        <label for="">course</label>
+                        <input required type="text" name="course" placeholder="Last name" class="border p-2 mt-1 rounded w-full">
 
-                        <select class="border p-2 mt-1 rounded w-full">
-                            <option>United States</option>
-                            <!-- Add more countries as needed -->
-                        </select>
+                        <!-- <select class="border p-2 my-4 rounded w-full" name="course">
+                            <option selected disabled>-- Course --</option>
+                            <option value="csp">CSP</option>
+                        </select> -->
+
+                        <label for="">Email:</label>
+                        <input required type="email" name="email" placeholder="Email address" class="border p-2 mt-1 rounded w-full">
+                        
+                        <label for="">Contact Number:</label>
+                        <input required type="text" name="contactnumber" placeholder="Email address" class="border p-2 mt-1 rounded w-full">
+
+                        
                         <!-- </div>
                     <div class="_group mb-4"> -->
-                        <input required type="text" placeholder="Street address" class="border p-2 mt-1 rounded w-full">
+                        <label for="">Street Address:</label>
+                        <input required type="text" name="streetaddress" placeholder="Street address" class="border p-2 mt-1 rounded w-full">
                         <!-- </div>
                     <div class="_group grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"> -->
-                        <input required type="text" placeholder="City" class="border p-2 mt-1 rounded w-full">
-                        <input required type="text" placeholder="State / Province" class="border p-2 mt-1 rounded w-full">
-                        <input required type="text" placeholder="ZIP / Postal code" class="border p-2 mt-1 rounded w-full">
+                        <label for="">City:</label>
+                        <input required type="text" name="city" placeholder="City" class="border p-2 mt-1 rounded w-full">
+                        <!-- <input required type="text" name="" placeholder="State / Province" class="border p-2 mt-1 rounded w-full"> -->
+                        <!-- <input required type="text" placeholder="ZIP / Postal code" class="border p-2 mt-1 rounded w-full"> -->
                     </div>
                     <!-- parent -->
                     <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -88,17 +108,17 @@
 
                         <div>
                             <label for="father_name">Father's Name</label>
-                            <input type="text" class="border p-2 mt-1 rounded w-full" name="father_name" id="father_name" required>
+                            <input type="text" name="fathername" class="border p-2 mt-1 rounded w-full" name="father_name" id="father_name" required>
                         </div>
 
                         <div>
                             <label for="mother_name">Mother's Name</label>
-                            <input type="text" class="border p-2 mt-1 rounded w-full" name="mother_name" id="mother_name" required>
+                            <input type="text" name="mothername" class="border p-2 mt-1 rounded w-full" name="mother_name" id="mother_name" required>
                         </div>
 
                         <div>
                             <label for="parent_contact">Parent/Guardian Contact Number</label>
-                            <input type="text" class="border p-2 mt-1 rounded w-full" name="parent_contact" id="parent_contact" required>
+                            <input type="text" name="guardiancontactnumber" class="border p-2 mt-1 rounded w-full" name="parent_contact" id="parent_contact" required>
                         </div>
                     </div>
                     <!-- btn -->
