@@ -15,9 +15,13 @@ class Student extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    //TODO n to n 
-
     public function teacher(){
-        
+        return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
     }
+    public function admission(){
+        return $this->hasOne(Admission::class);
+    }
+    // teacher can have many students
+    //if advisery so 1 teacher for many students
+    // 
 }

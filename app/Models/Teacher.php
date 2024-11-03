@@ -13,6 +13,7 @@ class Teacher extends Model
         'firstname',
         'lastname',
         'email',
+        'country',
         'streetaddress',
         'city',
         'region',
@@ -21,7 +22,7 @@ class Teacher extends Model
 
     //TODO n to n 
     public function student(){
-        
+        return $this->belongsTo(Student::class, 'teacher_id');
     }
 
 }

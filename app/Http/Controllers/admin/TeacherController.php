@@ -31,7 +31,7 @@ class TeacherController extends Controller
     public function store(Request $request)
     {
         Teacher::create($request->all());
-        return redirect()->route('admin.teachers.index')->with('success', 'Create successfully');
+        return redirect()->route('teachers.index')->with('success', 'Create successfully');
     }
 
     /**

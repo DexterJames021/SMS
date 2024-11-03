@@ -22,11 +22,29 @@
                         <input type="text" name="lastname" id="last-name" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
+                <div class="sm:col-span-3">
+                    <label for="middlename" class="block text-sm font-medium leading-6 text-gray-900">Middle name</label>
+                    <div class="mt-2">
+                        <input type="text" name="middlename" id="middlename" autocomplete="family-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
 
+                <div class="sm:col-span-4">
+                    <label for="course" class="block text-sm font-medium leading-6 text-gray-900">Course</label>
+                    <div class="mt-2">
+                        <input id="course" name="course" type="course" autocomplete="course" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
                 <div class="sm:col-span-4">
                     <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Email address</label>
                     <div class="mt-2">
                         <input id="email" name="email" type="email" autocomplete="email" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+                <div class="sm:col-span-4">
+                    <label for="contactnumber" class="block text-sm font-medium leading-6 text-gray-900">Contact number</label>
+                    <div class="mt-2">
+                        <input id="contactnumber" name="contactnumber" type="contactnumber" autocomplete="contactnumber" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
@@ -34,9 +52,10 @@
                     <label for="country" class="block text-sm font-medium leading-6 text-gray-900">Country</label>
                     <div class="mt-2">
                         <select id="country" name="country" autocomplete="country-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-                            <option>United States</option>
-                            <option>Canada</option>
-                            <option>Mexico</option>
+                            <option value="Philippines">Philippines</option>
+                            <option value="United States">United States</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Mexico">Mexico</option>
                         </select>
                     </div>
                 </div>
@@ -56,16 +75,23 @@
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="region" class="block text-sm font-medium leading-6 text-gray-900">State / Province</label>
+                    <label for="fathername" class="block text-sm font-medium leading-6 text-gray-900">Father name</label>
                     <div class="mt-2">
-                        <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="text" name="fathername" id="fathername" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</label>
+                    <label for="mothername" class="block text-sm font-medium leading-6 text-gray-900">Mother name</label>
                     <div class="mt-2">
-                        <input type="text" name="postalcode" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                        <input type="text" name="mothername" id="mothername" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </div>
+                </div>
+
+                <div class="sm:col-span-2">
+                    <label for="guardiancontactnumber" class="block text-sm font-medium leading-6 text-gray-900">Guardian Contact Number</label>
+                    <div class="mt-2">
+                        <input type="text" name="guardiancontactnumber" id="guardiancontactnumber" autocomplete="guardiancontactnumber" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                     </div>
                 </div>
             </div>

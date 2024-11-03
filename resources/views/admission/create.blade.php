@@ -46,7 +46,7 @@
     <!-- TODO fix ui -->
     <!-- component -->
     @if (session('success'))
-        <h1 class=" bg-green-900 text-white">Success</h1>
+    <h1 class=" bg-green-900 text-white">Success</h1>
     @endif
 
     <div class="bg-gray-100  transition-colors duration-300">
@@ -57,19 +57,32 @@
                     <span class="step-1 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 1</span>
                     <span class="step-2 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 2</span>
                     <span class="step-3 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span>
+                    <span class="step-4 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 4</span>
                     {{-- <span class="step-4 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span> --}}
                     {{-- <span class="step-5 p-5 m-2 shadow-sm rounded text-white bg-slate-400">Step 3</span> --}}
                 </div>
-                <div class="_group">
+                <div class="_group text-center">
                     <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Requirements</h1>
-                    <p class="text-gray-600  mb-6">requirement</p>
-                    <p class="text-gray-600  mb-6">psa</p>
-                    <p class="text-gray-600  mb-6">brgy something</p>
-                    <p class="text-gray-600  mb-6">etc</p>
+                    <p class="text-gray-600  mb-6">At least High School Graduate (Old Curr)</p>
+                    <p class="text-gray-600  mb-6">At least Senior High School Graduate (New Curr)</p>
+                    <p class="text-gray-600  mb-6">Furnished Registration Form</p>
+                    <p class="text-gray-600  mb-6">Copy of Birth certificate</p>
+                    <p class="text-gray-600  mb-6">Form 137 of SF9 or SF10</p>
+                    <p class="text-gray-600  mb-6">For vocational or degree holder, Diploma and TOR is preferred</p>
                 </div>
                 <form class="admission-form" method="POST" action="{{ route('admission.store') }}">
                     @csrf
                     @method('POST')
+                    <!-- courses -->
+                    <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <h1 class="text-xl font-semibold mb-4 text-gray-900">Courses:</h1>
+                        <div class="col-2 p-3 m-2 border :hover">
+                            <h1>CSS</h1>
+                        </div>
+                        <div class="col-2 p-3 m-2 border">
+                            <h1>CSP</h1>
+                        </div>
+                    </div>
 
                     <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Personal Information</h1>
@@ -102,7 +115,11 @@
                         <label for="">Contact Number:</label>
                         <input required type="text" name="contactnumber" placeholder="Email address"
                             class="border p-2 mt-1 rounded w-full">
+                    </div>
 
+                    <!-- Address -->
+                    <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Address Information</h1>
                         <label for="">Country:</label>
                         <input required type="text" name="country" placeholder="country"
                             class="border p-2 mt-1 rounded w-full">
@@ -111,11 +128,6 @@
                         <input required type="text" name="streetaddress" placeholder="Street address"
                             class="border p-2 mt-1 rounded w-full">
 
-                        <!-- </div>
-                    <div class="_group mb-4"> -->
-
-                        <!-- </div>
-                    <div class="_group grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"> -->
                         <label for="">City:</label>
                         <input required type="text" name="city" placeholder="City"
                             class="border p-2 mt-1 rounded w-full">

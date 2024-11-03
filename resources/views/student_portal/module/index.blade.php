@@ -1,4 +1,74 @@
 @extends('layouts.student_portal.layout')
 @section('main')
-Module Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corporis atque corrupti ea, eos praesentium pariatur reiciendis placeat explicabo error repellat. Eveniet accusantium repudiandae aperiam inventore laborum quis dolor. Doloremque exercitationem, accusamus unde quisquam laborum consequuntur nobis placeat cum laudantium ducimus ad velit, a delectus sunt perspiciatis nesciunt quasi ut rem minus esse ab reiciendis fugit sit! Eius quo, nobis nemo cupiditate tempore voluptatum eaque voluptate recusandae veritatis. Quibusdam sunt molestias incidunt alias, necessitatibus excepturi dolore dolorum, doloribus eligendi officia temporibus blanditiis iste explicabo ducimus mollitia commodi veritatis repudiandae. Dolorem delectus quo accusamus nemo harum asperiores consectetur, distinctio cupiditate fugiat atque nobis nulla eius mollitia ea. Vel natus earum aspernatur reprehenderit veniam id error vero explicabo itaque quidem illum nemo totam facere corporis eaque animi fugit iure ullam molestiae, officia repellendus atque saepe distinctio laborum! Beatae possimus ad optio quisquam quos odit quidem, necessitatibus omnis nulla laudantium sequi, ipsum dicta voluptates asperiores placeat distinctio illum reiciendis fugiat quo. Odit officia vero voluptas eos eaque sequi, amet maxime incidunt iure, dolores minus fugit natus voluptate temporibus. Numquam vitae possimus culpa quae dolores magnam accusamus consectetur totam nam eos. Architecto accusantium repellat voluptatem dolores dolorum exercitationem similique doloremque minus recusandae laborum dolore molestias, optio veniam ipsa placeat rem deleniti animi vitae! Dolor itaque ullam optio! Velit hic sint quisquam, quas eos autem saepe magnam eius odio laboriosam dolorum, eveniet facilis amet repellat sit aliquid minus, ratione doloremque nesciunt nostrum corporis. Facilis eaque sit ea culpa laboriosam odio rem illo numquam ut vel quibusdam nam impedit earum accusamus recusandae, harum nisi inventore quos. Aperiam minima exercitationem doloremque nostrum nobis enim eligendi earum commodi fugiat, quas illo officiis perspiciatis, fuga pariatur saepe cum alias animi dolore, itaque id possimus modi. Cumque possimus vero rem! Voluptatibus magnam velit voluptatem repudiandae, incidunt quibusdam, eaque harum eum exercitationem corrupti quis quisquam vel totam recusandae veniam aperiam fugiat distinctio provident, a labore. Doloremque neque unde perspiciatis fugit exercitationem nam nulla nesciunt facilis, quas optio suscipit ducimus corporis repellendus quis qui? Aliquid iure doloribus possimus corrupti, assumenda nesciunt quos magnam veritatis, maxime aspernatur quod ad veniam odio nulla placeat modi autem deleniti fuga soluta facilis. Voluptas id libero incidunt quia quod cupiditate eaque in culpa aspernatur, perspiciatis non sit illum deleniti dolorum, necessitatibus tempore molestiae exercitationem velit doloremque commodi aliquam qui blanditiis aperiam? Cupiditate iste voluptatum quae modi ea animi ex consectetur delectus voluptas veritatis illo, dignissimos a eaque, voluptatem aperiam laboriosam quasi autem. Esse officia impedit nostrum porro totam debitis accusamus ipsum, in, harum corporis optio exercitationem sunt neque omnis perspiciatis vel facilis ducimus nobis. Maiores reprehenderit libero commodi iure hic labore fugit laboriosam minima veniam velit consequatur sapiente non nam expedita quo quasi aperiam, at quod architecto temporibus magnam quos cumque eaque. Laborum, consequatur sed! Iusto nam iste, nesciunt vel ea amet ducimus sint eum adipisci sunt sed alias! Dolor ipsam, quo voluptatum eius sapiente ratione non dolore tempore sunt quos minima molestias officia nobis, quaerat quae libero magni minus aspernatur cupiditate velit, aut delectus iure tenetur. Quibusdam?
+
+<div class="container mx-auto px-4 py-8">
+    <!-- Course Enrollment Section -->
+    <div class="bg-white rounded-lg shadow-lg p-6">
+        <h2 class="text-2xl font-bold mb-6">Course Enrollment</h2>
+
+        <!-- Currently Enrolled Courses -->
+        <div class="mb-8">
+            <h3 class="text-lg font-semibold mb-4">Currently Enrolled Courses</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- @ forelse($enrolledCourses as $course) -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <!-- <h4 class="font-medium text-gray-900">{ { $ course-> name } }</h4>
+                            <p class="text-sm text-gray-600">Code: { { $ course-> code } }</p>
+                            <p class="text-sm text-gray-600">Semester: { { $ course-> semester } }</p> -->
+                        </div>
+                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                            Enrolled
+                        </span>
+                    </div>
+                    <!-- Moodle Access Button -->
+                    <!-- { { $ course-> moodle_url } } -->
+                    <a href="" target="_blank"
+
+                        class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                        Access Course in Moodle
+                        <svg class="ml-2 -mr-1 h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                    </a>
+                </div>
+                <!-- @ empty -->
+                <div class="col-span-full text-center py-4 text-gray-500">
+                    No courses enrolled yet.
+                </div>
+                <!-- @ endforelse -->
+            </div>
+        </div>
+
+        <!-- Available Courses for Enrollment -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4">Available Courses for Enrollment</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <!-- @ forelse($availableCourses as $course) -->
+                <div class="bg-white rounded-lg p-4 border border-gray-200">
+                    <div class="flex justify-between items-start">
+                        <div>
+
+                        </div>
+                    </div>
+                    <!-- Enroll Button -->
+                    <!-- { { route ('student.courses.enroll', $course->id) } } -->
+                    <form action="" method="POST">
+                        @csrf
+                        <button type="submit"
+                            class="mt-4 inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">
+                            Enroll in Course
+                        </button>
+                    </form>
+                </div>
+                <!-- @e mpty -->
+                <div class="col-span-full text-center py-4 text-gray-500">
+                    No available courses for enrollment.
+                </div>
+                <!-- @e ndforelse -->
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Http\Controllers\studentPortal;
+namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Course;
 
-class ModuleController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-
-        return view('student_portal.module.index');
+        return view('admin.courses.index');
     }
 
     /**
@@ -21,7 +21,7 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        
+        return view('admin.courses.create');
     }
 
     /**
@@ -29,7 +29,8 @@ class ModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Course::create($request->all());
+        return redirect()->back()->with('message','Successful addeds');
     }
 
     /**

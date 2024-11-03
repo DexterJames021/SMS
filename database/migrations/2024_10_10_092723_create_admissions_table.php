@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('student_id')->constrained();
             $table->string('firstname');
             $table->string('lastname');
             $table->string('middlename')->nullable();

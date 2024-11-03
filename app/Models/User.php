@@ -23,8 +23,13 @@ class User extends Authenticatable
     ];
     // one to one rel to student info
     public function student(){
-        return $this->hasOne(Student::class, 'user_id', 'id');
+        return $this->belongsTo(Student::class, 'user_id', 'id');
     }
+
+    public function admission(){
+        return $this->hasOne(Admission::class);
+    }
+
 
     /**
      * The attributes that should be hidden for serialization.

@@ -10,14 +10,16 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up()
-{
-    Schema::create('courses', function (Blueprint $table) {
-        $table->id();
-        $table->string('name'); // Course name
-        $table->text('description')->nullable(); // Course description
-        $table->timestamps();
-    });
-}
+    {
+        Schema::create('courses', function (Blueprint $table) {
+            $table->id();
+            $table->string('course'); // Course name
+            $table->string('course_mdl_id'); // moodle name
+            $table->string('enrollment_key')->nullable(); // key para maenroll
+            $table->text('description')->nullable(); // description
+            $table->timestamps();
+        });
+    }
 
 
     /**
