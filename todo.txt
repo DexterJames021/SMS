@@ -56,3 +56,18 @@ Additional Information:
     Resume/CV: resume (optional, file upload)
     Biography: biography (optional)
     Special Skills or Certifications: special_skills
+
+
+
+        //$token = 'bb29f3e6dfbb925813aadb5dffaa9da5'; // own pc Replace with your actual token
+        //$token = 'd417306f6be52a3ae4b01be54e3b291f'; // asly pc Replace with your actual token
+        $token = env('MOODLE_API_TOKEN');
+        // $serverUrl = 'http://localhost/moodle_sms/moodle/webservice/rest/server.php';
+        $serverUrl = env('MOODLE_API_URL');
+        $functionName = 'core_user_create_users';
+        $moodleUrl = "{$serverUrl}?wstoken={$token}&wsfunction={$functionName}&moodlewsrestformat=json";
+
+        // Send the request using Laravel's HTTP client with form URL-encoding
+        $response = Http::asForm()->post($moodleUrl, $moodleData);
+
+        // Check the response

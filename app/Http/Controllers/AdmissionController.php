@@ -16,10 +16,11 @@ class AdmissionController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index() {
+    public function index()
+    {
         $data = Admission::get();
         return view('admin.admission.lists')
-                ->with('data', $data);
+            ->with('data', $data);
     }
 
     /**
@@ -35,74 +36,63 @@ class AdmissionController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate request data
         $validatedData = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'middlename' => 'required',
-            'course' => 'required',
+            'course' => 'required|string',
             'email' => 'required|email|unique:students,email',
-            'contactnumber' => 'required',
-            'country' => 'required',
-            'streetaddress' => 'required',
-            'city' => 'required',
-            'fathername' => 'required',
-            'mothername' => 'required',
-            'guardiancontactnumber' => 'required',
+            'contactnumber' => 'required|string|unique:students,contactnumber',
+            'country' => 'required|string',
+            'city' => 'required|string',
+            'guardiancontactnumber' => 'required|string',
         ]);
 
-        // Check if student already exists with the same name and email
-        $existingStudent = Admission::where('firstname', $request->firstname)
-            ->where('lastname', $request->lastname)
-            ->where('email', $request->email)
-            ->first();
-
-        if ($existingStudent) {
-            return response()->json(['message' => 'Student with the same details already exists.'], 409);
-        }
-
-        // Create the student record
-        $student = Admission::create($validatedData);
-
-        // Create a user record for SMS login access
+        // Create User
         $user = User::create([
-            'name' => $student->firstname . ' ' . $student->lastname,
-            'email' => $student->email,
-            'password' => bcrypt('@Test12345'), // Set your default password or generate it dynamically
+            'name' => "{$validatedData['firstname']} {$validatedData['lastname']}",
+            'email' => $validatedData['email'],
+            'password' => bcrypt('@Test12345'),
         ]);
 
-        // Generate Moodle account details
-        $username = $student->firstname . $student->id;
-        // $password = strtoupper(substr($student->firstname, 0, 1)) . strtoupper(substr($student->lastname, 0, 1)) . 'SN' . $student->id;
+        // Create Student
+        $student = Student::create([
+            'email' => $validatedData['email'],
+            'contactnumber' => $validatedData['contactnumber'],
+            'course' => $validatedData['course'],
+        ]);
 
+        // Create Admission with foreign keys linking to User and Student
+        $admission = Admission::create(array_merge($validatedData, [
+            'user_id' => $user->id,
+            'student_id' => $student->id,
+        ]));
+
+        // Moodle account creation data
         $moodleData = [
-            'users[0][username]' => $username,
-            'users[0][password]' => "@Test123",
-            'users[0][firstname]' => $student->firstname,
-            'users[0][lastname]' => $student->lastname,
-            'users[0][email]' => $student->email,
+            'users[0][username]' => "{$validatedData['firstname']}{$student->id}",
+            'users[0][password]' => '@Test123',
+            'users[0][firstname]' => $validatedData['firstname'],
+            'users[0][lastname]' => $validatedData['lastname'],
+            'users[0][email]' => $validatedData['email'],
         ];
 
-        //$token = 'bb29f3e6dfbb925813aadb5dffaa9da5'; // own pc Replace with your actual token
-        //$token = 'd417306f6be52a3ae4b01be54e3b291f'; // asly pc Replace with your actual token
-        $token = env('MOODLE_API_TOKEN');
-        // $serverUrl = 'http://localhost/moodle_sms/moodle/webservice/rest/server.php';
-        $serverUrl = env('MOODLE_API_URL');
-        $functionName = 'core_user_create_users';
-        $moodleUrl = "{$serverUrl}?wstoken={$token}&wsfunction={$functionName}&moodlewsrestformat=json";
+        // Send request to Moodle API to create the account
+        $response = Http::asForm()->post(
+            env('MOODLE_API_URL') . '?wstoken=' . env('MOODLE_API_TOKEN') . '&wsfunction=core_user_create_users&moodlewsrestformat=json',
+            $moodleData
+        );
 
-        // Send the request using Laravel's HTTP client with form URL-encoding
-        $response = Http::asForm()->post($moodleUrl, $moodleData);
-
-        // Check the response
         if ($response->successful()) {
-            // User created successfully in Moodle
-            //TODO add user
-            return response()->json(['message' => 'User created successfully', 'data' => $response->json()]);
+            return response()->json(['message' => 'Admission and Moodle account created successfully.']);
         } else {
-            // Handle error
-            return response()->json(['message' => 'Failed to create user', 'error' => $response->json()], $response->status());
+            return response()->json(['message' => 'Failed to create Moodle account.'], 500);
         }
     }
+
+
+
+
 
 
     /**
