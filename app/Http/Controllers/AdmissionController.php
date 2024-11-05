@@ -95,7 +95,9 @@ class AdmissionController extends Controller
                 ]
             ];
 
+            // $moodleApiUrl = env('MOODLE_API_URL') .'?wstoken='. env('MOODLE_API_TOKEN') .'&wsfunction=core_user_create_users&moodlewsrestformat=json';
             $moodleApiUrl = 'http://localhost/moodle_sms/moodle/webservice/rest/server.php?wstoken=bb29f3e6dfbb925813aadb5dffaa9da5&wsfunction=core_user_create_users&moodlewsrestformat=json';
+
 
             Log::info('Moodle API URL: ' . $moodleApiUrl);
             Log::info('Moodle Data: ' . json_encode($moodleData));

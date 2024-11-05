@@ -1,4 +1,7 @@
 //TODO 
+//moodle on synology
+https://mariushosting.com/how-to-install-moodle-on-your-synology-nas/
+
 install todo tree extension
  mobile responsive sidebar
  teacher management with many to many

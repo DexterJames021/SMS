@@ -19,22 +19,20 @@
 <body>
     <!-- component -->
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         .login_img_section {
-            background: linear-gradient(rgba(2, 2, 2, .7), rgba(0, 0, 0, .7)), url(https://images.unsplash.com/photo-1650825556125-060e52d40bd0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80) center center;
+            background: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5)),
+            url("{{asset('assets/img/ynb.jpg')}}") center center;
+            background-repeat: no-repeat;
+            /* background-color: rgba(0, 0, 0, .7); */
+            background-size: cover;
         }
     </style>
-    @auth
-    {{-- If the user is already logged in --}}
-    <div class="alert alert-info">
-        <h1>You are already logged in!</h1>
-        <p>Do you want to log out?</p>
-        <form action="{{ route('logout') }}" method="POST">
-            @csrf
-            <button type="submit" class="btn btn-danger">Logout</button>
-        </form>
-    </div>
-    @else
-   //TODO change the images 
+
     <div class="h-screen flex">
         <div class="hidden lg:flex w-full lg:w-1/2 login_img_section
           justify-around items-center">
@@ -46,23 +44,31 @@
                   z-0">
 
             </div>
-            <div class="w-full mx-auto px-20 flex-col items-center space-y-6">
-                <h1 class="text-white font-bold text-4xl font-sans">AITCI</h1>
-                <p class="text-white mt-1">Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Iusto, eligendi!</p>
-                <!-- <div class="flex justify-center lg:justify-start mt-6">
-                    <a href="#" class="hover:bg-indigo-700 hover:text-white hover:-translate-y-1 transition-all duration-500 bg-white text-indigo-800 mt-4 px-4 py-2 rounded-2xl font-bold mb-2">Get Started</a>
-                </div> -->
+            <div class="w-full mx-auto px-20 flex-col items-center space-y-6 text-white">
+                <h1 class=" font-bold text-4xl font-sans"><a href="{{ url('/')}}" class="hover:bg-slate-400 cursor-pointer">AITCI</a></h1>
+                <p class=" mt-1"> OBJECTIVES</p>
+                <ol class="">
+                    <li class="mb-2">1. To educate the student for latest standard in sterile processing of medical-surgical instruments and equipments use by all hospitals and healthcare providers.</li>
+                    <li class="mb-2">2. To teach the significant role of central sterile supply service in healthcare setting and know its importance to our society.</li>
+                    <li class="mb-2">3. To provide quality sterilization process and safety-disinfection practice in all types of medical-surgical instruments and equipments.</li>
+                    <li class="mb-2">4. To provide comprehensive training to student that implements standard care and best practices as central sterile supply technician CSST</li>
+                    <li class="mb-2">
+                    5. To establish global sterilization and disinfection guidelines that suitable to all hospitals around the country and congruent to national and international standard.
+                    </li>
+                </ol>
+                    
+
             </div>
         </div>
-        <div class="flex w-full lg:w-1/2 justify-center items-center bg-white space-y-8">
+        <div class="flex w-full md:w-54 lg:w-1/2 justify-center items-center bg-white space-y-8">
             <div class="w-full px-8 md:px-32 lg:px-24">
                 <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                <form method="POST" action="{{ route('login') }}" class="bg-white rounded-md shadow-2xl p-5">
+                <form method="POST" action="{{ route('login') }}" class="bg-white rounded-md shadow-xl p-5 ">
                     @csrf
                     <!-- <form class="bg-white rounded-md shadow-2xl p-5"> -->
                     <h1 class="text-gray-800 font-bold text-2xl mb-1">LOGIN </h1>
-                    <p class="text-sm font-normal text-gray-600 mb-8">Welcome Back</p>
+                    <p class="text-sm font-normal text-gray-600 mb-8">ASLY Student Portal</p>
                     <!-- Email Address -->
                     <div>
                         <x-input-label for="email" :value="__('Email')" />
@@ -99,7 +105,6 @@
 
         </div>
     </div>
-    @endauth
 </body>
 
 </html>

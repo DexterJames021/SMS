@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
             'email' => 'student@gmail.com',
             'password' => 'student123',
         ]);
+        
     }
 }
