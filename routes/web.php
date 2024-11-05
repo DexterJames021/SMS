@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('admission', [AdmissionController::class, 'create'])->name('admission');
     Route::post('admission', [AdmissionController::class, 'store'])->name('admission.store');
+    Route::get('admission/success', [AdmissionController::class, 'success'])->name('admission.success');
 });
 
 //? namespace

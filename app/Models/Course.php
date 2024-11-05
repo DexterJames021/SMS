@@ -15,4 +15,8 @@ class Course extends Model
         'enrollment_key'
 
     ];
+
+    public function student(){
+        return $this->hasMany(Student::class);
+    }
 }

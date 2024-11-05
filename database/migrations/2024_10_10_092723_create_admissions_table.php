@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('student_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('student_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('course_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate(); // Assuming you have a courses table
             $table->string('firstname');
             $table->string('lastname');
             $table->string('middlename')->nullable();
-            $table->string('course');
             $table->string('email')->unique();
             $table->string('contactnumber')->unique();
             $table->string('country');

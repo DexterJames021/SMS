@@ -24,6 +24,8 @@
         integrity="sha512-eyHL1atYNycXNXZMDndxrDhNAegH2BDWt1TmkXJPoGf1WLlNYt08CSjkqF5lnCRmdm3IrkHid8s2jOUY4NIZVQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         ._group {
             display: none;
@@ -45,9 +47,37 @@
 <body>
     <!-- TODO fix ui -->
     <!-- component -->
-    @if (session('success'))
-    <h1 class=" bg-green-900 text-white">Success</h1>
+    @if (session('message'))
+    <script>
+        Swal.fire({
+            title: "Admission Successful!",
+            text: "That thing is still around?",
+            icon: "success"
+        });
+    </script>
     @endif
+
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            title: "Error",
+            text: "{{ is_array(session('error')) ? implode(', ', session('error')) : session('error') }}",
+            icon: "error"
+        });
+    </script>
+    @endif
+
+    @if ($errors->any())
+    <script>
+        Swal.fire({
+            title: "Validation Errors",
+            text: "{{ implode(', ', $errors->all()) }}",
+            icon: "error"
+        });
+    </script>
+    @endif
+
+
 
     <div class="bg-gray-100  transition-colors duration-300">
         <div class="container mx-auto p-4">
@@ -73,16 +103,6 @@
                 <form class="admission-form" method="POST" action="{{ route('admission.store') }}">
                     @csrf
                     @method('POST')
-                    <!-- courses -->
-                    <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <h1 class="text-xl font-semibold mb-4 text-gray-900">Courses:</h1>
-                        <div class="col-2 p-3 m-2 border :hover">
-                            <h1>CSS</h1>
-                        </div>
-                        <div class="col-2 p-3 m-2 border">
-                            <h1>CSP</h1>
-                        </div>
-                    </div>
 
                     <div class="_group grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <h1 class="text-xl font-semibold mb-4 text-gray-900 ">Personal Information</h1>
@@ -99,21 +119,19 @@
                         <input required type="text" name="middlename" placeholder="Middle name"
                             class="border p-2 mt-1 rounded w-full">
 
-                        <label for="">course</label>
-                        <input required type="text" name="course" placeholder="Last name"
-                            class="border p-2 mt-1 rounded w-full">
-
-                        <!-- <select class="border p-2 my-4 rounded w-full" name="course">
-                            <option selected disabled>-- Course --</option>
-                            <option value="csp">CSP</option>
-                        </select> -->
+                        <select class="border p-2 my-4 rounded w-full" name="course_id">
+                            <option selected disabled value="">-- Course --</option>
+                            @foreach ($courses as $course)
+                            <option value="{{ $course->id }}">{{ $course->course }}</option>
+                            @endforeach
+                        </select>
 
                         <label for="">Email:</label>
                         <input required type="email" name="email" placeholder="Email address"
                             class="border p-2 mt-1 rounded w-full">
 
                         <label for="">Contact Number:</label>
-                        <input required type="text" name="contactnumber" placeholder="Email address"
+                        <input required type="number" name="contactnumber" placeholder="Contact Number"
                             class="border p-2 mt-1 rounded w-full">
                     </div>
 
@@ -150,7 +168,7 @@
 
                         <div>
                             <label for="parent_contact">Parent/Guardian Contact Number</label>
-                            <input type="text" name="guardiancontactnumber" class="border p-2 mt-1 rounded w-full"
+                            <input type="number" name="guardiancontactnumber" class="border p-2 mt-1 rounded w-full"
                                 name="parent_contact" id="parent_contact" required>
                         </div>
                     </div>
@@ -179,6 +197,24 @@
     </div>
     <script>
         $(function() {
+
+
+            // const {
+            //     value: accept
+            // } = Swal.fire({
+            //     title: "Terms and conditions",
+            //     input: "checkbox",
+            //     inputValue: 1,
+            //     inputPlaceholder: ` I agree with the terms and conditions `,
+            //     confirmButtonText: `Continue&nbsp;<i class="fa fa-arrow-right"></i> `,
+            //     inputValidator: (result) => {
+            //         return !result && "You need to agree with T&C";
+            //     }
+            // });
+            // if (accept) {
+            //     Swal.fire("You agreed with T&C :)");
+            // }
+
             var $section = $('._group');
 
             function navigateTo(index) {
@@ -206,6 +242,7 @@
                 return $section.index($section.filter('.current'));
             }
 
+
             $('.prev-btn').click(function() {
                 navigateTo(curIndex() - 1);
             });
@@ -224,6 +261,7 @@
 
             // Start at the first section
             navigateTo(0);
+
         });
     </script>
 

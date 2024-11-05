@@ -10,11 +10,11 @@
     @endif
     <div class="flex justify-between">
         <h2 class="font-semibold text-xl my-3 text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
+            {{ __('Student Records') }}
         </h2>
-        <a href="{{ route('students.create')}}" class="">
+        <!-- <a href="{{ route ('students.create')}}" class="">
             <button class=" bg-blue-500 items-end hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-gray-700">Add</button>
-        </a>
+        </a> -->
     </div>
     <div>
         <ul role="list" class="divide-y divide-gray-100">

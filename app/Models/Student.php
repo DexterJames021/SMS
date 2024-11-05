@@ -18,8 +18,13 @@ class Student extends Model
     public function teacher(){
         return $this->belongsTo(Teacher::class, 'teacher_id', 'id');
     }
+
     public function admission(){
         return $this->hasOne(Admission::class);
+    }
+
+    public function course(){
+        return $this->belongsTo(Course::class, 'course_id');
     }
     // teacher can have many students
     //if advisery so 1 teacher for many students

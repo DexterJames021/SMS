@@ -6,10 +6,12 @@ $token = 'bb29f3e6dfbb925813aadb5dffaa9da5'; // Replace with your actual token
 use App\Models\Admission;
 use App\Models\Student;
 use App\Models\User;
+use App\Models\Course;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client; // For making HTTP requests to the LMS API
 use Illuminate\Support\Facades\Http; // Import the Http facade
-
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AdmissionController extends Controller
 {
@@ -28,71 +30,105 @@ class AdmissionController extends Controller
      */
     public function create()
     {
-        return view('admission.create');
+        // $data = Course::with('student')->get();
+        $data = Course::all();
+        return view('admission.create')->with('courses', $data);
+        // return view('admission.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
         // Validate request data
         $validatedData = $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'course' => 'required|string',
-            'email' => 'required|email|unique:students,email',
-            'contactnumber' => 'required|string|unique:students,contactnumber',
+            'middlename' => 'nullable|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'course_id' => 'required|exists:courses,id',
+            'contactnumber' => 'required|string',
             'country' => 'required|string',
+            'streetaddress' => 'nullable|string',
             'city' => 'required|string',
-            'guardiancontactnumber' => 'required|string',
+            'fathername' => 'nullable|string',
+            'mothername' => 'nullable|string',
+            'guardiancontactnumber' => 'required|numeric',
         ]);
 
-        // Create User
-        $user = User::create([
-            'name' => "{$validatedData['firstname']} {$validatedData['lastname']}",
-            'email' => $validatedData['email'],
-            'password' => bcrypt('@Test12345'),
-        ]);
+        DB::beginTransaction();
 
-        // Create Student
-        $student = Student::create([
-            'email' => $validatedData['email'],
-            'contactnumber' => $validatedData['contactnumber'],
-            'course' => $validatedData['course'],
-        ]);
+        try {
+            // Create Student
+            $student = Student::create([
+                // 'email' => $validatedData['email'],
+                'contactnumber' => $validatedData['contactnumber'],
+                'course_id' => $validatedData['course_id'],
+            ]);
 
-        // Create Admission with foreign keys linking to User and Student
-        $admission = Admission::create(array_merge($validatedData, [
-            'user_id' => $user->id,
-            'student_id' => $student->id,
-        ]));
+            // Create User
+            $user = User::create([
+                'name' => "{$validatedData['firstname']} {$validatedData['lastname']}",
+                'email' => $validatedData['email'],
+                'password' => bcrypt('@Test12345'),
+            ]);
 
-        // Moodle account creation data
-        $moodleData = [
-            'users[0][username]' => "{$validatedData['firstname']}{$student->id}",
-            'users[0][password]' => '@Test123',
-            'users[0][firstname]' => $validatedData['firstname'],
-            'users[0][lastname]' => $validatedData['lastname'],
-            'users[0][email]' => $validatedData['email'],
-        ];
+            // Create Admission
+            $admission = Admission::create(array_merge([
+                'user_id' => $user->id,
+                'student_id' => $student->id,
+                'course_id' => $validatedData['course_id'],
+            ], $validatedData));
 
-        // Send request to Moodle API to create the account
-        $response = Http::asForm()->post(
-            env('MOODLE_API_URL') . '?wstoken=' . env('MOODLE_API_TOKEN') . '&wsfunction=core_user_create_users&moodlewsrestformat=json',
-            $moodleData
-        );
+            // Moodle account creation data
+            $moodleData = [
+                'users' => [
+                    [
+                        'username' => "{$validatedData['lastname']}{$student->id}",
+                        'password' => '@Test123',
+                        'firstname' => $validatedData['firstname'],
+                        'lastname' => $validatedData['lastname'],
+                        'email' => $validatedData['email'],
+                    ]
+                ]
+            ];
 
-        if ($response->successful()) {
-            return response()->json(['message' => 'Admission and Moodle account created successfully.']);
-        } else {
-            return response()->json(['message' => 'Failed to create Moodle account.'], 500);
+            $moodleApiUrl = 'http://localhost/moodle_sms/moodle/webservice/rest/server.php?wstoken=bb29f3e6dfbb925813aadb5dffaa9da5&wsfunction=core_user_create_users&moodlewsrestformat=json';
+
+            Log::info('Moodle API URL: ' . $moodleApiUrl);
+            Log::info('Moodle Data: ' . json_encode($moodleData));
+
+            // Send request to Moodle
+            $response = Http::asForm()->post($moodleApiUrl, $moodleData);
+
+            if (!$response->successful()) {
+                Log::error('Moodle API error: ' . $response->status() . ' - ' . $response->body());
+                throw new \Exception('Failed to create Moodle account');
+            } else {
+                Log::info('Moodle API info: ' . $response->status() . ' - ' . $response->body());
+            }
+
+            DB::commit();
+
+            return redirect()->route('admission')
+                ->with(['message' => 'Admission created successfully. Moodle account creation may have failed; check logs for details.']);
+        } catch (\Exception $e) {
+            DB::rollBack();
+
+            return redirect()->route('admission')
+                ->with(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
 
 
 
 
+    public function success()
+    {
+        return view('admission.success');
+    }
 
 
     /**
@@ -100,8 +136,8 @@ class AdmissionController extends Controller
      */
     public function show(Student $student)
     {
-        Admission::findOrFail($student);
-        return view();
+        // Admission::findOrFail($student);
+        // return view();
     }
 
     /**
