@@ -2,7 +2,16 @@
 @section('main')
 
 <section>
-  <form method="post" action="{{ route('teachers.store')}}">
+  @if ($errors->any())
+  <script>
+    Swal.fire({
+      title: "Validation Errors",
+      text: "{{ implode(', ', $errors->all()) }}",
+      icon: "error"
+    });
+  </script>
+  @endif
+  <form method="post" action="{{ route('courses.store')}}">
     @csrf
     @method('post')
     <div class="border-b border-gray-900/10 pb-12">
@@ -13,29 +22,34 @@
         <div class="sm:col-span-3">
           <label for="course" class="block text-sm font-medium leading-6 text-gray-900">Course:</label>
           <div class="mt-2">
-            <input type="number" name="course" id="course" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
-
-
-
-        <div class="sm:col-span-3">
-          <label for="course_mdl" class="block text-sm font-medium leading-6 text-gray-900">Course Moodle:</label>
-          <div class="mt-2">
-            <input type="number" name="course_moodle" id="course_mdl"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input type="text" name="course" id="course" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
           </div>
         </div>
 
         <div class="sm:col-span-3">
-          <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Enrollment Key</label>
+          <label for="course_mdl_id" class="block text-sm font-medium leading-6 text-gray-900">Course Moodle:</label>
           <div class="mt-2">
-            <input type="number" name="enrollmentkey" id="street-address"  class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <input type="number" name="course_moodle_id" id="course_mdl" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
         </div>
 
+        <div class="sm:col-span-3">
+          <label for="enrollment_key" class="block text-sm font-medium leading-6 text-gray-900">Enrollment Key</label>
+          <div class="mt-2">
+            <input type="text" name="enrollment_key" id="enrollment_key" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          </div>
+
+        </div>
+        <div class="sm:col-span-3">
+          <label for="description" class="block text-sm font-medium leading-6 text-gray-900">Desciprtion</label>
+          <div class="mt-2">
+            <textarea type="text" name="description" id="description" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+          </div>
+
+        </div>
       </div>
-    </div>
 
-    <!-- <div class="border-b border-gray-900/10 pb-12">
+      <!-- <div class="border-b border-gray-900/10 pb-12">
       <h2 class="text-base font-semibold leading-7 text-gray-900">Notifications</h2>
       <p class="mt-1 text-sm leading-6 text-gray-600">We'll always let you know about important changes, but you pick what else you want to hear about.</p>
 

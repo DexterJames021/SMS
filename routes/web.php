@@ -7,7 +7,6 @@ use App\Http\Controllers\admin\CourseController;
 use App\Http\Controllers\AdmissionController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\studentPortal\ModuleController;
 use App\Http\Controllers\studentPortal\PortalController;
 use Illuminate\Support\Facades\Route;
@@ -45,7 +44,6 @@ Route::middleware(['auth', 'isStudent'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
     Route::resource('portal', PortalController::class);
     Route::resource('module', ModuleController::class);
-    Route::post('enroll-course', [EnrollmentController::class, 'enrollCourse'])->name('student.course.enroll');
 });
 
 

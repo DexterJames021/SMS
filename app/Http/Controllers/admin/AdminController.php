@@ -3,7 +3,10 @@ namespace App\Http\Controllers\admin; // Keep it lowercase if your folder is low
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Middleware\Student;
+use App\Models\Admission;
+use App\Models\Course;
+use App\Models\Student;
+use App\Models\Teacher;
 use Illuminate\Container\Attributes\DB;
 
 
@@ -14,8 +17,17 @@ class AdminController extends Controller
      */
     public function index()
     {
-        
-        return view('admin.dashboard');
+        $student = Student::get();
+        $studentAll = count($student);
+        $teacher = Teacher::get();
+        $teacherAll = count($teacher);
+        $course = Course::get();
+        $courseAll = count($course);
+        $admission = Admission::get();
+        $admissionAll = count($admission);
+
+
+        return view('admin.dashboard')->with(['student'=>$studentAll,'teacher'=>$teacherAll,'course'=>$courseAll,'admission'=>$admissionAll]);
     }
 
     /**

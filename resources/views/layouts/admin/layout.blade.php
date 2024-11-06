@@ -12,6 +12,14 @@
   <link rel="preconnect" href="https://fonts.bunny.net">
   <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+  <!-- sweetalert -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- chart js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script defer src="{{ asset('assets/js/analytics.js')}}"></script>
+
   <!-- Scripts -->
   @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -23,7 +31,7 @@
 
     <main>
       <x-app-layout>
-       
+
 
         <div class="py-8">
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

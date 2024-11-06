@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\studentPortal;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Http\Request;
-
+use App\Models\Course;
 class ModuleController extends Controller
 {
     /**
@@ -12,8 +13,11 @@ class ModuleController extends Controller
      */
     public function index()
     {
+        $data = Course::all();
+        $course = Student::first();
+        
 
-        return view('student_portal.module.index');
+        return view('student_portal.module.index')->with('data', $data);
     }
 
     /**

@@ -13,7 +13,8 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('admin.courses.index');
+        $data = Course::all();
+        return view('admin.courses.index')->with('courses', $data);
     }
 
     /**
@@ -29,8 +30,16 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request->successful());
+        // $validated = $request->validate([
+        //     'course'=> 'required|string',
+        //     'course_mdl_id'=> 'required|numeric',
+        //     'enrollment_key'=> 'required|string',
+        //     'description'=> 'nullable|string',
+        // ]);
         Course::create($request->all());
-        return redirect()->back()->with('message','Successful addeds');
+        return redirect()->route('courses.index')->with('message','Successful addeds');
     }
 
     /**

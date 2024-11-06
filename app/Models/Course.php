@@ -12,8 +12,8 @@ class Course extends Model
     protected $fillable = [
         'course',
         'course_mdl_id',
-        'enrollment_key'
-
+        'enrollment_key',
+        'description'
     ];
 
     public function student(){

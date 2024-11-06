@@ -28,16 +28,15 @@
                     <div class="min-w-0 flex-auto">
                         <p class="text-sm font-semibold leading-6 text-gray-900">
                             <a href="{{ route('students.show',  $student->id )}}">
-                                {{ $student->lastname}} {{ $student->firstname}}
-
+                                {{ $student->admission->lastname}} {{ $student->admission->firstname}}
                             </a>
                         </p>
-                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ $student->email}}</p>
+                        <p class="mt-1 truncate text-xs leading-5 text-gray-500">{{ $student->admission->email}}</p>
                     </div>
                 </div>
                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
                     <p class="text-sm leading-6 text-gray-900">course</p>
-                    <p class="mt-1 text-xs leading-5 text-gray-500">{{ $student->country}}<time datetime="2023-01-23T13:23Z"> {{ $student->city}}</time></p>
+                    <p class="mt-1 text-xs leading-5 text-gray-500">{{ $student->admission->country}}<time datetime="2023-01-23T13:23Z"> {{ $student->city}}</time></p>
                 </div>
             </li>
             @endforeach

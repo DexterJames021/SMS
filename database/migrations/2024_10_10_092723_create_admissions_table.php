@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('mothername')->nullable();
             $table->string('guardiancontactnumber');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->timestamp('admission_date')->nullable();
+            $table->timestamp('admission_date');
             $table->timestamps();
         });
     }

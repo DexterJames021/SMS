@@ -20,14 +20,14 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                     Module grant
                     </x-nav-link>
-                </div>
+                </div> -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('module.index')" :active="request()->routeIs('module.index')">
-                        Enroll
+                        Enroll to LMS
                     </x-nav-link>
                 </div>
                 <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -45,7 +45,7 @@
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
-                        Student Management
+                        Student Records
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -123,12 +123,9 @@
                         {{ __('Dashboard') }}
                     </x-responsive-nav-link>
                 
-                    <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        Enroll
-                    </x-responsive-nav-link>
                 
                     <x-responsive-nav-link :href="route('module.index')" :active="request()->routeIs('module.index')">
-                        Module grant
+                    Enroll to LMS
                     </x-responsive-nav-link>
                 
                     <!-- <x-responsive-nav-link :href="route('module.index')" :active="request()->routeIs('module.index')">
@@ -147,7 +144,7 @@
                     </x-responsive-nav-link>
                 
                     <x-responsive-nav-link :href="route('students.index')" :active="request()->routeIs('students.index')">
-                        Student Management
+                        Student Records
                     </x-responsive-nav-link>
                 
                     <x-responsive-nav-link :href="route('teachers.index')" :active="request()->routeIs('teachers.index')">

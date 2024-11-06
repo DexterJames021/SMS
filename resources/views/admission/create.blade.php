@@ -60,7 +60,7 @@
     @if (session('error'))
     <script>
         Swal.fire({
-            title: "Error",
+            title: "System Error",
             text: "{{ is_array(session('error')) ? implode(', ', session('error')) : session('error') }}",
             icon: "error"
         });

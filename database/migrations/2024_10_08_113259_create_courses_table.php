@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('course'); // Course name
-            $table->string('course_mdl_id'); // moodle name
+            $table->string('course_mdl_id')->nullable(); // moodle name
             $table->string('enrollment_key')->nullable(); // key para maenroll
             $table->text('description')->nullable(); // description
             $table->timestamps();
