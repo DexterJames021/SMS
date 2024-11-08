@@ -107,7 +107,18 @@ class AdmissionController extends Controller
 
             if ($response->successful()) {
                 Log::info('Moodle API info: ' . $response->status() . ' - ' . $response->body());
-                
+
+                $moodleResponse = $response->json();
+
+                if (isset($moodleResponse[0]['id'])) {
+                    $moodleUserId = $moodleResponse[0]['id'];
+    
+                    // Update the admission with Moodle user ID
+                    $admission->update(['moodle_id' => $moodleUserId]);
+                }else {
+                    throw new \Exception('Moodle user creation failed. No user ID returned.');
+                }
+
             } else {
                 Log::error('Moodle API error: ' . $response->status() . ' - ' . $response->body());
                 throw new \Exception('Failed to create Moodle account');

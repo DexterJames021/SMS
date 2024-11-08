@@ -47,9 +47,15 @@ class ModuleController extends Controller
     public function store(Request $request)
     {
         try {
+            $userid = Auth::user()->id;
+            $admission = Admission::where('user_id', $userid)->first();
 
-            $studentid = 27;
-            // $studentid = auth::user()->id;
+            if(!$admission || !$admission->moodle_id){
+                return redirect()->back()->with('message', 'ID is not Define');
+            }
+            
+            
+            $moodle_id = $admission->moodle_id;
             $courseid = $request->input('course_id');
             $course = Course::findOrFail($courseid);
 
@@ -62,7 +68,7 @@ class ModuleController extends Controller
                     [
                         'roleid' => 5,
                         'courseid' => $course->course_mdl_id,
-                        'userid' => $studentid,
+                        'userid' => $moodle_id,
                     ]
                 ]
             ];
