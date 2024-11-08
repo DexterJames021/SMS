@@ -10,12 +10,14 @@
         });
     </script>
     @endif
-    <div class="flex justify-between">
-        <h2 class="font-semibold text-xl my-3 text-gray-800 leading-tight">
-            {{ __('Teachers Records') }}
-        </h2>
-        <a href="{{ route('teachers.create')}}" class="">
-            <button class=" bg-blue-500 items-end hover:bg-blue-700 hover:text-white rounded-md px-3 py-2 text-gray-700">Add</button>
+    <div class="flex justify-between items-center mb-6">
+        <h1 class="text-2xl font-bold text-gray-800"> {{ __('Teachers Records') }}</h1>
+        <a href="{{ route('teachers.create')}}"
+            class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+            </svg>
+            Add New Teacher
         </a>
     </div>
     <div>

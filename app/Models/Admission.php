@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Admission extends Model
 {
     use HasFactory;
+    // protected $table = 'admissions';
     // protected $fillable = [
     //     'firstname',
     //     'lastname',
@@ -26,11 +27,16 @@ class Admission extends Model
 
     protected $guarded = [];
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    public function student(){
+    public function student()
+    {
         return $this->belongsTo(Student::class);
     }
-
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
 }

@@ -42,7 +42,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 // STUDENT
 Route::middleware(['auth', 'isStudent'])->group(function () {
     Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
-    Route::resource('portal', PortalController::class);
+    // Route::resource('portal', PortalController::class);
     Route::resource('module', ModuleController::class);
 });
 

@@ -1,4 +1,6 @@
 //TODO 
+- debug duplication 
+
 //moodle on synology
 https://mariushosting.com/how-to-install-moodle-on-your-synology-nas/
 

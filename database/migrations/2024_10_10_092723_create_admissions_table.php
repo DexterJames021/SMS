@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('admissions', function (Blueprint $table) {
             $table->id();
+            $table->integer('moodle_id')->nullable()->index();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('student_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('course_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate(); // Assuming you have a courses table

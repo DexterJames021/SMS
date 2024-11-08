@@ -72,7 +72,7 @@ class AdmissionController extends Controller
             $user = User::create([
                 'name' => "{$validatedData['firstname']} {$validatedData['lastname']}",
                 'email' => $validatedData['email'],
-                'password' => bcrypt('@Test12345'),
+                'password' => bcrypt('@Student2024'),
             ]);
 
             // Create Admission
@@ -87,7 +87,7 @@ class AdmissionController extends Controller
                 'users' => [
                     [
                         'username' => "{$validatedData['lastname']}{$student->id}",
-                        'password' => '@Test123',
+                        'password' => '@Student2024',
                         'firstname' => $validatedData['firstname'],
                         'lastname' => $validatedData['lastname'],
                         'email' => $validatedData['email'],
@@ -105,11 +105,12 @@ class AdmissionController extends Controller
             // Send request to Moodle
             $response = Http::asForm()->post($moodleApiUrl, $moodleData);
 
-            if (!$response->successful()) {
+            if ($response->successful()) {
+                Log::info('Moodle API info: ' . $response->status() . ' - ' . $response->body());
+                
+            } else {
                 Log::error('Moodle API error: ' . $response->status() . ' - ' . $response->body());
                 throw new \Exception('Failed to create Moodle account');
-            } else {
-                Log::info('Moodle API info: ' . $response->status() . ' - ' . $response->body());
             }
 
             DB::commit();
