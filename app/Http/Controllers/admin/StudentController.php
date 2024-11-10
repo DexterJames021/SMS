@@ -13,7 +13,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $data = Student::get();
+        $data = Student::with('admission')->get();
         return view('admin.student.index')->with('students', $data);
         // return view('admin.student.index');
     }

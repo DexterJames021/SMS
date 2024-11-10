@@ -104,11 +104,14 @@ class AdmissionController extends Controller
 
             // Send request to Moodle
             $response = Http::asForm()->post($moodleApiUrl, $moodleData);
+            
+            $moodleResponse = $response->json();
+            $moodleUser = $moodleResponse[0]['username'];
+
+            Log::info("Moodle username: " . $moodleUser);
 
             if ($response->successful()) {
                 Log::info('Moodle API info: ' . $response->status() . ' - ' . $response->body());
-
-                $moodleResponse = $response->json();
 
                 if (isset($moodleResponse[0]['id'])) {
                     $moodleUserId = $moodleResponse[0]['id'];
@@ -116,7 +119,7 @@ class AdmissionController extends Controller
                     // Update the admission with Moodle user ID
                     $admission->update(['moodle_id' => $moodleUserId]);
                 }else {
-                    throw new \Exception('Moodle user creation failed. No user ID returned.');
+                    throw new \Exception('Moodle user creation failed. No user ID returned. ');
                 }
 
             } else {
@@ -127,12 +130,12 @@ class AdmissionController extends Controller
             DB::commit();
 
             return redirect()->route('admission')
-                ->with(['message' => 'Admission created successfully. Moodle account creation may have failed; check logs for details.']);
+                ->with(['message' => 'Admission created successfully.','user'=> $moodleUser,'pass'=> '@Student2024']);
         } catch (\Exception $e) {
             DB::rollBack();
 
             return redirect()->route('admission')
-                ->with(['error' => 'An error occurred: ' . $e->getMessage()]);
+                ->with(['error' => 'An error occurred: Contact admin office' . $e->getMessage()]);
         }
     }
 

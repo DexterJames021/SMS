@@ -44,20 +44,11 @@
                   z-0">
 
             </div>
-            <div class="w-full mx-auto px-20 flex-col items-center space-y-6 text-white">
-                <h1 class=" font-bold text-4xl font-sans"><a href="{{ url('/')}}" class="hover:bg-slate-400 cursor-pointer">AITCI</a></h1>
-                <p class=" mt-1"> OBJECTIVES</p>
-                <ol class="">
-                    <li class="mb-2">1. To educate the student for latest standard in sterile processing of medical-surgical instruments and equipments use by all hospitals and healthcare providers.</li>
-                    <li class="mb-2">2. To teach the significant role of central sterile supply service in healthcare setting and know its importance to our society.</li>
-                    <li class="mb-2">3. To provide quality sterilization process and safety-disinfection practice in all types of medical-surgical instruments and equipments.</li>
-                    <li class="mb-2">4. To provide comprehensive training to student that implements standard care and best practices as central sterile supply technician CSST</li>
-                    <li class="mb-2">
-                    5. To establish global sterilization and disinfection guidelines that suitable to all hospitals around the country and congruent to national and international standard.
-                    </li>
-                </ol>
-                    
-
+            <div class="p-2 flex-col space-y-6 text-white">
+                <h1 class=" font-bold text-8xl shadow-sm text-white font-sans hover:underline cursor-pointer hover:-translate-y-1 transition-all duration-500">
+                    <a href="{{ url('/')}}">AITCI</a>
+                </h1>
+                <span>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Pariatur, aliquid.</span>
             </div>
         </div>
         <div class="flex w-full md:w-54 lg:w-1/2 justify-center items-center bg-white space-y-8">
@@ -67,8 +58,8 @@
                 <form method="POST" action="{{ route('login') }}" class="bg-white rounded-md shadow-xl p-5 ">
                     @csrf
                     <!-- <form class="bg-white rounded-md shadow-2xl p-5"> -->
-                    <h1 class="text-gray-800 font-bold text-2xl mb-1">LOGIN </h1>
-                    <p class="text-sm font-normal text-gray-600 mb-8">ASLY Student Portal</p>
+                    <h1 class="text-gray-600 font-bold text-2xl mb-2">LOGIN </h1>
+                    <!-- <p class="text-sm font-normal text-gray-600 mb-8">ASLY Student Portal</p> -->
                     <!-- Email Address -->
                     <div>
                         <x-input-label for="email" :value="__('Email')" />
