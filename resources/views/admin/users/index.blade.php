@@ -91,46 +91,6 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Add/Edit Modal -->
-    <!-- <div
-        x-show="isOpen"
-        class="fixed z-10 inset-0 overflow-y-auto"
-        aria-labelledby="modal-title"
-        role="dialog"
-        aria-modal="true">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-            <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                <form>
-                            <div class="mt-3">
-                                <label for="sms_course" class="block text-sm font-medium text-gray-700">SMS Course</label>
-                                <input type="text">
-                            </div>
-                            <div class="mt-3">
-                                <label for="moodle_course_id" class="block text-sm font-medium text-gray-700">Moodle Course ID</label>
-                                <input type="text">
-                            </div>
-                            <div class="mt-3">
-                                <label for="is_active" class="block text-sm font-medium text-gray-700">Active</label>
-                                <input 
-                                    id="is_active" 
-                                    v-model="formData.is_active" 
-                                    type="checkbox" 
-                                    class="mt-1 block w-full pl-10 text-sm text-gray-700"
-                                >
-                            </div>
-                            <button 
-                                type="submit" 
-                                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg"
-                            >
-                            Submit
-                                <template x-if="editing">Update</template>
-                                <template x-else>Create</template>
-                            </button>
-                        </form>
-            </div>
-        </div>
-    </div> -->
 </div>
 </div>
 

@@ -45,8 +45,8 @@
 
             </div>
             <div class="p-2 flex-col space-y-6 text-white">
-                <h1 class=" font-bold text-8xl shadow-sm text-white font-sans hover:underline cursor-pointer hover:-translate-y-1 transition-all duration-500">
-                    <a href="{{ url('/')}}">AITCI</a>
+                <h1 class=" font-bold text-9xl shadow-sm text-white font-sans hover:underline cursor-pointer hover:-translate-y-1 transition-all duration-500">
+                    <a href="{{ url('/')}}">AICI</a>
                 </h1>
                 <span>Lorem ipsum dolor sit amet consectetur <br> adipisicing elit. Pariatur, aliquid.</span>
             </div>

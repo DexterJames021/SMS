@@ -58,7 +58,7 @@
         Swal.fire({
             title: "Admission Successful!",
             // text: "{ { is_arr ay(sess ion('mes sage')) ? implode (', ', session('message')) : session('message') }}",
-            html: "<html>Moodle Account: <br> Username: {{ session('user')}} <br> Default Password{{ session('pass')}}</html>",
+            html: "<html>Moodle Account: <br> Username: {{ session('user')}} <br> SMS and LMS <br> Password: {{ session('pass')}}</html>",
             icon: "success"
         });
     </script>
@@ -138,12 +138,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="_group text-center">
+                <div id="terms" class="_group  text-center">
                     <h1 class="block text-2xl font-medium leading-6 text-gray-900">Terms and Condition</h1>
                     <p>Data privacy:</p>
                     <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente itaque voluptate recusandae earum illo modi asperiores quae, quasi veritatis voluptates deleniti placeat ut dolorum corrupti iure tenetur voluptatem harum tempora!</p>
                     <label for="">Agree</label>
-                    <input type="checkbox" data-parsley-check="[1]" name="" id="">
+                    <input type="checkbox"  data-parsley-check="[1]" name="" id="">
                 </div>
                 <form class="admission-form" method="POST" action="{{ route('admission.store') }}">
                     @csrf
@@ -218,7 +218,7 @@
                                 class="prev-btn px-4 py-2 rounded bg-white ring-1 ring-inset ring-gray-300 text-gray-800 hover:bg-gray-200 focus:outline-none transition-colors">
                                 Prev
                             </button>
-                            <button type="submit" id="theme-toggle"
+                            <button type="submit" id="theme-toggle" onClick="confirm('Are you want you submit ')"
                                 class=" px-4 py-2 rounded bg-green-400 text-white hover:bg-green-500 focus:outline-none transition-colors">
                                 Submit
                             </button>

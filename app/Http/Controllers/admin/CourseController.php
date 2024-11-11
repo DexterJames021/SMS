@@ -55,7 +55,8 @@ class CourseController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Course::find($id);
+        return view('admin.courses.edit', compact('data'));
     }
 
     /**
@@ -63,7 +64,10 @@ class CourseController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([]);
+        $post = Course::find($id);
+        $post->update($request->all());
+        return redirect()->route('courses.index')->with('message', 'Edit successfully');
     }
 
     /**
@@ -71,6 +75,8 @@ class CourseController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $course = Course::find($id);
+        $course->delete();
+        return redirect()->route('courses.index')->with('message', 'Delete successfully');
     }
 }

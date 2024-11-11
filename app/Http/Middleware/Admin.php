@@ -18,7 +18,7 @@ class Admin
     {
         if(Auth::check() && Auth::user()->usertype != 'admin'){
             // return redirect('student/index');
-            abort('403', 'Forbidden');
+            abort('404', 'Not Found');
 
         }
         return $next($request);

@@ -1,4 +1,3 @@
-console.log('validator')
 /*
 firstname
 lastname

@@ -1,20 +1,28 @@
-$(function() {
+$(function () {
 
-    // const {
-    //     value: accept
-    // } = Swal.fire({
-    //     title: "Terms and conditions",
-    //     input: "checkbox",
-    //     inputValue: 1,
-    //     inputPlaceholder: ` I agree with the terms and conditions `,
-    //     confirmButtonText: `Continue&nbsp;<i class="fa fa-arrow-right"></i> `,
-    //     inputValidator: (result) => {
-    //         return !result && "You need to agree with T&C";
-    //     }
-    // });
-    // if (accept) {
-    //     Swal.fire("You agreed with T&C :)");
-    // }
+    function delete_course() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                });
+            }
+        });
+
+    }
+
+
+
 
     var $section = $('._group');
 
@@ -37,6 +45,8 @@ $(function() {
             backgroundColor: 'lightblue',
             color: 'white'
         });
+
+
     }
 
     function curIndex() {
@@ -44,19 +54,23 @@ $(function() {
     }
 
 
-    $('.prev-btn').click(function() {
+    $('.prev-btn').click(function () {
         navigateTo(curIndex() - 1);
     });
 
-    $('.next-btn').click(function() {
+    $('.next-btn').click(function () {
         $('.admission-form').parsley().whenValidate({
             group: 'block-' + curIndex()
-        }).done(function() {
+        }).done(function () {
             navigateTo(curIndex() + 1);
         });
     });
 
-    $section.each(function(index, section) {
+    $section.each(function (index, section) {
+        $(section).find(':input').attr('data-parsley-group', 'block-' + index);
+    });
+
+    $section.each(function (index, section) {
         $(section).find(':input').attr('data-parsley-group', 'block-' + index);
     });
 
